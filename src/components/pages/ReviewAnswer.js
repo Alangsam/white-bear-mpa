@@ -1,4 +1,6 @@
 import React from "react";
+import thumbsUpIcon from "../../icons/thumbs-up.svg";
+import appLogo from "../../icons/logo-app.svg";
 
 export default function ReviewAnswer() {
    return (
@@ -7,7 +9,7 @@ export default function ReviewAnswer() {
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                <img
                   className="d-inline-block"
-                  src="style/logo-app.svg"
+                  src={appLogo}
                   width="32px;"
                   alt="white-bear-logo"
                />
@@ -64,7 +66,7 @@ export default function ReviewAnswer() {
                      </button>
                      <button className="btn  btn-secondary">
                         <img
-                           src="style/thumbs-up.svg"
+                           src={thumbsUpIcon}
                            className="mt-n3"
                            style={{ width: "28px" }}
                            alt=""
