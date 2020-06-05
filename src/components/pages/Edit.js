@@ -1,20 +1,13 @@
 import React from "react";
-import appLogo from "../../icons/logo-app.svg";
 import saveLogo from "../../icons/save.svg";
+import Header from "../ui/Header";
 
 export default function Edit() {
    return (
       <div className="container">
          <div className="row">
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1 ">
-               <img
-                  className="d-inline-block"
-                  src={appLogo}
-                  width="32px"
-                  alt="app-logo"
-               />
-               <h3 className="d-inline-block text-brand">White Bear</h3>
-               <button className="btn btn-link float-right">Log out</button>
+               <Header />
                <div
                   className="d-flex btn-group px-0"
                   role="group"

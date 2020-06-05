@@ -1,21 +1,13 @@
 import React from "react";
-import appLogo from "../../icons/logo-app.svg";
+
+import Header from "../ui/Header";
 
 export default function ReviewImagery() {
    return (
       <div class="container">
          <div class="row">
             <div class="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-               <img
-                  class="d-inline-block"
-                  src={appLogo}
-                  width="32px;"
-                  alt="app-logo"
-               />
-               <h3 class="d-inline-block text-brand">White Bear</h3>
-               <a href="index.html" class="btn btn-link float-right">
-                  Log out
-               </a>
+               <Header />
                <div
                   class="d-flex btn-group px-0"
                   role="group"

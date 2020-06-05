@@ -1,22 +1,13 @@
 import React from "react";
 import thumbsUpIcon from "../../icons/thumbs-up.svg";
-import appLogo from "../../icons/logo-app.svg";
+import Header from "../ui/Header";
 
 export default function ReviewAnswer() {
    return (
       <div class="container">
          <div className="row">
             <div className="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-               <img
-                  className="d-inline-block"
-                  src={appLogo}
-                  width="32px;"
-                  alt="white-bear-logo"
-               />
-               <h3 className="d-inline-block text-brand">White Bear</h3>
-               <a href="index.html" className="btn btn-link float-right">
-                  Log out
-               </a>
+               <Header />
                <div
                   className="d-flex btn-group px-0"
                   role="group"
@@ -34,7 +25,7 @@ export default function ReviewAnswer() {
                </div>
                <div className="py-4">
                   <div className="card bg-primary">
-                     <form className="card-body text-center">
+                     <form className="card-body">
                         <textarea
                            id="addanswertext"
                            maxlength="240"
