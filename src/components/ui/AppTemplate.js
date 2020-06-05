@@ -1,10 +1,14 @@
 import React from "react";
+import Navigation from "./Navigation";
+import Header from "./Header";
 
 export default function AppTemplate(props) {
    return (
       <div class="container">
          <div class="row">
             <div class="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1 ">
+               <Header />
+               <Navigation />
                {props.children}
             </div>
          </div>

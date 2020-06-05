@@ -1,13 +1,10 @@
 import React from "react";
-import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 import AppTemplate from "../ui/AppTemplate";
+import { Link } from "react-router-dom";
 
 export default function ReviewEmpty() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
          <div class="text-center pt-4">
             <div>
                <h4>Out of cards</h4>
@@ -15,12 +12,17 @@ export default function ReviewEmpty() {
          </div>
          <div class="">
             <div class="col-6 d-inline pt-3 pl-0">
-               <button class="btn btn-link">previous card</button>
+               <Link to="/review-answer" class="btn btn-link">
+                  previous card
+               </Link>
             </div>
             <div class="col-6 d-inline pt-4 ">
-               <button class="float-right btn btn-sm btn-outline-primary">
+               <Link
+                  to="/review-imagery"
+                  class="float-right btn btn-sm btn-outline-primary"
+               >
                   Get more cards
-               </button>
+               </Link>
             </div>
          </div>
       </AppTemplate>

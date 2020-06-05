@@ -1,14 +1,10 @@
 import React from "react";
-
-import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 import AppTemplate from "../ui/AppTemplate";
+import { Link } from "react-router-dom";
 
 export default function ReviewImagery() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
          <div class=" mx-auto pt-4">
             <div id="the-top-card" class="card bg-primary">
                <form class="card-body text-center">
@@ -35,15 +31,18 @@ export default function ReviewImagery() {
          </div>
          <div class="pt-6">
             <div class="col-6 d-inline pt-4 pl-0">
-               <button class="btn btn-link">previous card</button>
+               <Link to="/review-answer" class="btn btn-link">
+                  previous card
+               </Link>
             </div>
             <div class="col-6 d-inline pt-4">
-               <button
+               <Link
+                  to="/review-answer"
                   id="show-the-answer"
                   class="float-right btn btn-outline-primary "
                >
                   Show answer
-               </button>
+               </Link>
             </div>
          </div>
       </AppTemplate>

@@ -1,14 +1,11 @@
 import React from "react";
 import editLogo from "../../icons/edit.svg";
-import Header from "../ui/Header";
 import AppTemplate from "../ui/AppTemplate";
-import Navigation from "../ui/Navigation";
+import { Link } from "react-router-dom";
 
 export default function AllCards() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
          <div class="pt-4">
             <nav class="navbar">
                <form class="form-inline">
@@ -31,7 +28,10 @@ export default function AllCards() {
          </div>
          <div class="pt-4 px-0">
             <p class="d-inline-block">search cards by</p>
-            <select id="sort" class="custom-select border-primary float-right">
+            <select
+               id="sort"
+               class="form-control border-primary d-inline-block float-right w-50 pt-0 "
+            >
                <option class="" selected>
                   Most recent
                </option>
@@ -66,10 +66,10 @@ export default function AllCards() {
                </div>
             </div>
             <div class="d-inline align-top">
-               <a href="edit.html" class="btn btn-link">
+               <Link to="/edit" class="btn btn-link">
                   <img src={editLogo} width="20px" alt="edit-button" />
                   Edit
-               </a>
+               </Link>
             </div>
          </div>
 
@@ -101,10 +101,10 @@ export default function AllCards() {
                </div>
             </div>
             <div class="d-inline align-top">
-               <a href="edit.html" class="btn btn-link">
+               <Link to="/edit" class="btn btn-link">
                   <img src={editLogo} width="20px" alt="edit-button" />
                   Edit
-               </a>
+               </Link>
             </div>
          </div>
       </AppTemplate>

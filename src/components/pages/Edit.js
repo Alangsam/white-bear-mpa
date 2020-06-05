@@ -1,14 +1,11 @@
 import React from "react";
 import saveLogo from "../../icons/save.svg";
-import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 import AppTemplate from "../ui/AppTemplate";
+import { Link } from "react-router-dom";
 
 export default function Edit() {
    return (
       <AppTemplate>
-         <Header />
-         <Navigation />
          <div className=" mx-auto">
             <h4 className="text-center pt-2">Edit card</h4>
             <div className="card bg-primary">
@@ -43,13 +40,14 @@ export default function Edit() {
          </div>
          <div className="clearfix"></div>
          <div className="">
-            <button id="discard-the-changes" className="btn btn-link">
-               Discard changes
-            </button>
-            <a
-               href="all-cards.html"
-               className="float-right btn  btn-secondary "
+            <Link
+               to="/all-cards"
+               id="discard-the-changes"
+               className="btn btn-link"
             >
+               Discard changes
+            </Link>
+            <Link to="/all-cards" className="float-right btn  btn-secondary ">
                <div className="">
                   <img
                      src={saveLogo}
@@ -59,7 +57,7 @@ export default function Edit() {
                   />
                   Save
                </div>
-            </a>
+            </Link>
          </div>
          <div className="clearfix"></div>
          <div className=" text-center pt-3">
@@ -96,13 +94,13 @@ export default function Edit() {
             </label>
          </div>
          <div className="pt-3">
-            <a
-               href="all-cards.html"
+            <Link
+               to="/all-cards"
                id="delete-button"
                className="btn btn-outline-danger"
             >
                Delete this card
-            </a>
+            </Link>
          </div>
       </AppTemplate>
    );

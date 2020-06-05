@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../ui/Header";
-import Navigation from "../ui/Navigation";
 import AppTemplate from "../ui/AppTemplate";
+import { Link } from "react-router-dom";
 
 export default function CreateAnswer() {
    return (
@@ -13,8 +12,6 @@ export default function CreateAnswer() {
             <img src="style/success.svg" width="32" alt="success" />
             <span className="pl-3 align-middle">Card Created!</span>
          </div>
-         <Header />
-         <Navigation />
          <div className=" py-4">
             <div className="card bg-primary">
                <form className="card-body">
@@ -31,14 +28,14 @@ export default function CreateAnswer() {
             <p id="textcountleft" className="float-right"></p>
          </div>
          <div className="clearfix"></div>
-         <a
-            href="src/components/pages/CreateImagery.js"
+         <Link
+            to="/create-imagery"
             id="next-go-to-imagery-btn"
             className="float-right btn btn-lg btn-outline-secondary"
             disabled="true"
          >
             Next
-         </a>
+         </Link>
       </AppTemplate>
    );
 }

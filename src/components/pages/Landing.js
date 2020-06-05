@@ -1,5 +1,6 @@
 import React from "react";
 import mainLogo from "../../img/logo-landing.png";
+import { Link } from "react-router-dom";
 
 export default function Landing() {
    return (
@@ -131,12 +132,12 @@ export default function Landing() {
                               </div>
                            </div>
                         </form>
-                        <button
-                           id="lets-go-btn"
+                        <Link
+                           to="/create-answer"
                            className="btn btn-success btn-block mt-4"
                         >
                            Let's go!
-                        </button>
+                        </Link>
                      </div>
                   </div>
                </div>
@@ -195,12 +196,12 @@ export default function Landing() {
                               </div>
                            </div>
                         </form>
-                        <button
-                           id="the-login-btn"
+                        <Link
+                           to="/create-answer"
                            className="btn btn-success float-right mt-4"
                         >
                            Log in
-                        </button>
+                        </Link>
                      </div>
                   </div>
                </div>
