@@ -59,7 +59,9 @@ export default function Landing() {
                         <p>Let's get you signed up</p>
                         <form>
                            <div className="form-group">
-                              <label for="Email_textbox">Email address</label>
+                              <label htmlFor="Email_textbox">
+                                 Email address
+                              </label>
                               <input
                                  id="Email_textbox"
                                  className="form-control border border-dark "
@@ -67,21 +69,21 @@ export default function Landing() {
                                  name="login_info"
                               ></input>
                               <div
-                                 for="Email_textbox"
+                                 htmlFor="Email_textbox"
                                  id="you-have-to-create-email"
                                  className="invalid-feedback"
                               >
                                  Please enter your email address.
                               </div>
                               <div
-                                 for="Email_textbox"
+                                 htmlFor="Email_textbox"
                                  id="you-have-to-be-more-unique"
                                  className="invalid-feedback"
                               >
                                  You need more unique characters
                               </div>
                               <div
-                                 for="Email_textbox"
+                                 htmlFor="Email_textbox"
                                  id="you-have-to-make-yours-valid"
                                  className="invalid-feedback"
                               >
@@ -89,7 +91,7 @@ export default function Landing() {
                               </div>
                            </div>
                            <div className="form-group">
-                              <label for="Email_password">
+                              <label htmlFor="Email_password">
                                  Create a password
                               </label>
                               <input
@@ -99,21 +101,21 @@ export default function Landing() {
                                  name="login_info"
                               ></input>
                               <div
-                                 for="Email_password"
+                                 htmlFor="Email_password"
                                  id="you-have-to-enter-something-password"
                                  className="invalid-feedback"
                               >
                                  You must enter a password
                               </div>
                               <div
-                                 for="Email_password"
+                                 htmlFor="Email_password"
                                  id="you-have-to-create-password"
                                  className="invalid-feedback"
                               >
                                  Your password must be at least 9 characters.
                               </div>
                               <div
-                                 for="Email_password"
+                                 htmlFor="Email_password"
                                  id="you-need-to-not-use-local"
                                  className="invalid-feedback"
                               >
@@ -121,7 +123,7 @@ export default function Landing() {
                                  password.
                               </div>
                               <div
-                                 for="Email_password"
+                                 htmlFor="Email_password"
                                  id="you-need-to-be-more-original"
                                  className="invalid-feedback"
                               >
@@ -150,7 +152,7 @@ export default function Landing() {
                         </p>
                         <form>
                            <div className="form-group">
-                              <label for="Email_textbox_bottom">
+                              <label htmlFor="Email_textbox_bottom">
                                  Email address
                               </label>
                               <input
@@ -160,7 +162,7 @@ export default function Landing() {
                                  name="login_info"
                               ></input>
                               <div
-                                 for="Email_textbox_bottom"
+                                 htmlFor="Email_textbox_bottom"
                                  id="you-need-to-enter-email"
                                  className="invalid-feedback"
                               >
@@ -168,7 +170,7 @@ export default function Landing() {
                               </div>
                            </div>
                            <div className="form-group">
-                              <label for="Email_password_bottom">
+                              <label htmlFor="Email_password_bottom">
                                  Password
                               </label>
                               <input
@@ -178,14 +180,14 @@ export default function Landing() {
                                  name="login_info"
                               ></input>
                               <div
-                                 for="Email_password_bottom"
+                                 htmlFor="Email_password_bottom"
                                  id="you-need-to-enter-password"
                                  className="invalid-feedback"
                               >
                                  Your password must be at least 9 characters.
                               </div>
                               <div
-                                 for="Email_password_bottom"
+                                 htmlFor="Email_password_bottom"
                                  id="you-need-to-enter-something"
                                  className="invalid-feedback"
                               >

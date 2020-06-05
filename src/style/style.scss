@@ -8,10 +8,16 @@
 //}
 
 .background-image {
-   background-image: url("/style/background-landing.jpg");
+   background-image: url("../img/background-landing.jpg");
    background-size: 100% 100%;
    background-repeat: no-repeat;
    background-attachment: fixed;
+   min-height: 100vh;
+}
+body,
+html {
+   height: 100%;
+   margin: 0;
 }
 
 //enter info to create acc on landing page is hidden initially
