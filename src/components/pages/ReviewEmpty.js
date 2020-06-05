@@ -1,5 +1,47 @@
 import React from "react";
+import appLogo from "../../icons/logo-app.svg";
 
 export default function ReviewEmpty() {
-   return <h1>review empty</h1>;
+   return (
+      <div class="container">
+         <div class="row">
+            <div class="col-12 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+               <img
+                  class="d-inline-block"
+                  src={appLogo}
+                  width="32px;"
+                  alt="app-logo"
+               />
+               <h3 class="d-inline-block text-brand">White Bear</h3>
+               <button class="btn btn-link float-right">Log out</button>
+               <div
+                  class="d-flex btn-group px-0"
+                  role="group"
+                  aria-label="navigation"
+               >
+                  <button class="btn btn-primary">Create New</button>
+                  <button class="btn btn-primary tab-seperator">Review</button>
+                  <button class="btn btn-primary tab-seperator">
+                     All Cards
+                  </button>
+               </div>
+               <div class="text-center pt-4">
+                  <div>
+                     <h4>Out of cards</h4>
+                  </div>
+               </div>
+               <div class="">
+                  <div class="col-6 d-inline pt-3 pl-0">
+                     <button class="btn btn-link">previous card</button>
+                  </div>
+                  <div class="col-6 d-inline pt-4 ">
+                     <button class="float-right btn btn-sm btn-outline-primary">
+                        Get more cards
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   );
 }
