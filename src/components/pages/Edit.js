@@ -2,6 +2,10 @@ import React from "react";
 import saveLogo from "../../icons/save.svg";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
+import { memoryCards } from "../../mock-data/memory-cards.js";
+import toDisplayableDate from "date-fns/format";
+
+const memoryCard = memoryCards[1];
 
 export default function Edit() {
    return (
@@ -9,12 +13,13 @@ export default function Edit() {
          <div className=" mx-auto">
             <h4 className="text-center pt-2">Edit card</h4>
             <div className="card bg-primary">
-               <form className="card-body text-center">
+               <form className="card-body">
                   <textarea
                      id="addanswertext"
-                     maxlength="240"
-                     className=""
+                     maxLength="240"
+                     className="w-100"
                      rows="9"
+                     defaultValue={memoryCard.imagery}
                   ></textarea>
                </form>
             </div>
@@ -23,9 +28,10 @@ export default function Edit() {
                   <form>
                      <textarea
                         id="editimage"
-                        maxlength="240"
-                        className=""
+                        maxLength="240"
+                        className="w-100"
                         rows="5"
+                        defaultValue={memoryCard.answer}
                      ></textarea>
                   </form>
                </div>
@@ -63,7 +69,7 @@ export default function Edit() {
          <div className=" text-center pt-3">
             <h4>Card properties</h4>
          </div>
-         <div className="pl-0">
+         <div className="">
             <div
                id="properties"
                className="col-4 d-inline-block text-nowrap pl-0"
@@ -74,10 +80,14 @@ export default function Edit() {
                <p id="consecutives">Consecutives:</p>
             </div>
             <div className="col-4 d-inline-block ">
-               <p>date</p>
-               <p>date</p>
-               <p>date</p>
-               <p>num</p>
+               <p>{toDisplayableDate(memoryCard.createdAt, "MMM. d, yyyy")}</p>
+               <p>
+                  {toDisplayableDate(memoryCard.lastAttemptAt, "MMM. d, yyyy")}
+               </p>
+               <p>
+                  {toDisplayableDate(memoryCard.nextAttemptAt, "MMM. d, yyyy")}
+               </p>
+               <p>{memoryCard.totalSuccessfulAttempts}</p>
             </div>
          </div>
          <div className="clearfix"></div>
@@ -89,7 +99,7 @@ export default function Edit() {
                style={{ width: "16px", height: "16px" }}
                checked
             />
-            <label className="align-middle" for="delete-check">
+            <label className="align-middle" htmlFor="delete-check">
                Show delete button
             </label>
          </div>

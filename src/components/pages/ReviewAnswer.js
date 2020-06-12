@@ -2,33 +2,22 @@ import React from "react";
 import thumbsUpIcon from "../../icons/thumbs-up.svg";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
+import { memoryCards } from "../../mock-data/memory-cards.js";
+
+const memoryCard = memoryCards[1];
 
 export default function ReviewAnswer() {
    return (
       <AppTemplate>
          <div className="py-4">
-            <div className="card bg-primary">
-               <form className="card-body">
-                  <textarea
-                     id="addanswertext"
-                     maxlength="240"
-                     className=""
-                     rows="9"
-                     readonly
-                  ></textarea>
-               </form>
-            </div>
-            <div className="card bg-secondary">
+            <div id="tukhtgrredwefw" className="card bg-primary text-light">
                <div className="card-body">
-                  <form>
-                     <textarea
-                        id="editimage"
-                        maxlength="240"
-                        className=""
-                        rows="5"
-                        readonly
-                     ></textarea>
-                  </form>
+                  <div>{memoryCard.imagery}</div>
+               </div>
+            </div>
+            <div id="wfwgtgewdqwd" className="card bg-secondary text-light">
+               <div className="card-body">
+                  <div>{memoryCard.answer}</div>
                </div>
             </div>
          </div>
@@ -43,7 +32,7 @@ export default function ReviewAnswer() {
                >
                   Needs work
                </Link>
-               <Link to="/review-answer" className="btn  btn-secondary">
+               <Link to="/review-imagery" className="btn  btn-secondary">
                   <img
                      src={thumbsUpIcon}
                      className="mt-n3"

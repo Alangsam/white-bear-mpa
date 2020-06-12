@@ -6,13 +6,13 @@ export default function Header() {
    return (
       <div>
          <img
-            class="d-inline-block"
+            className="d-inline-block"
             src={appLogo}
             width="32px;"
             alt="app-logo"
          />
-         <h3 class="d-inline-block text-brand">White Bear</h3>
-         <Link to="/" class="btn btn-link float-right">
+         <h3 className="d-inline-block text-brand">White Bear</h3>
+         <Link to="/" className="btn btn-link float-right">
             Log out
          </Link>
       </div>
