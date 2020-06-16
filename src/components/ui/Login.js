@@ -1,11 +1,13 @@
 import React from "react";
 import classnames from "classnames";
+import hash from "object-hash";
+import { v4 as getUuid } from "uuid";
 
 export default class Login extends React.Component {
    constructor() {
       super();
       this.state = {
-         EmailFieldIsBlank: false,
+         EmailFieldIsBlank: "",
          PasswordFieldIsBlank: false,
       };
    }
@@ -24,6 +26,25 @@ export default class Login extends React.Component {
          this.setState({ PasswordFieldIsBlank: true });
       } else {
          this.setState({ PasswordFieldIsBlank: false });
+      }
+   }
+
+   logUserObject() {
+      const inputedEmail = document.getElementById("Email_textbox_bottom")
+         .value;
+      const inputedPassword = document.getElementById("Email_password_bottom")
+         .value;
+      if (
+         this.state.EmailFieldIsBlank === false &&
+         this.state.PasswordFieldIsBlank === false
+      ) {
+         const user = {
+            id: getUuid(),
+            email: inputedEmail,
+            password: hash(inputedPassword),
+            createdAt: Date.now(),
+         };
+         console.log(user);
       }
    }
 
@@ -49,6 +70,9 @@ export default class Login extends React.Component {
                            })}
                            type="email"
                            name="login_info"
+                           onChange={() => {
+                              this.checkIfCredentialsEntered();
+                           }}
                         ></input>
                         {this.state.EmailFieldIsBlank && (
                            <div
@@ -70,6 +94,9 @@ export default class Login extends React.Component {
                            })}
                            type="password"
                            name="login_info"
+                           onChange={() => {
+                              this.checkIfCredentialsEntered();
+                           }}
                         ></input>
                         {this.state.PasswordFieldIsBlank && (
                            <div
@@ -87,6 +114,7 @@ export default class Login extends React.Component {
                      className="btn btn-success float-right mt-4"
                      onClick={() => {
                         this.checkIfCredentialsEntered();
+                        this.logUserObject();
                      }}
                   >
                      Log in

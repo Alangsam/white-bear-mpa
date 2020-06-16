@@ -35,10 +35,24 @@ export default class AllCards extends React.Component {
       const arrOfSelected = [...this.state.cardsRendered];
       const orderedByRecent = orderBy(arrOfSelected, "lastAttemptAt", "desc");
       const orderedByOldest = orderBy(arrOfSelected, "lastAttemptAt", "asc");
+      const orderedByHardest = orderBy(
+         arrOfSelected,
+         ["totalSuccessfulAttempts", "createdAt"],
+         ["asc", "asc"]
+      );
+      const orderedByEasiest = orderBy(
+         arrOfSelected,
+         ["totalSuccessfulAttempts", "createdAt"],
+         ["desc", "desc"]
+      );
       if (e.target.value === "Most recent") {
          this.setState({ cardsRendered: orderedByRecent });
       } else if (e.target.value === "Oldest") {
          this.setState({ cardsRendered: orderedByOldest });
+      } else if (e.target.value === "Hardest") {
+         this.setState({ cardsRendered: orderedByHardest });
+      } else if (e.target.value === "Easiest") {
+         this.setState({ cardsRendered: orderedByEasiest });
       }
    }
 
@@ -85,6 +99,8 @@ export default class AllCards extends React.Component {
                      Most recent
                   </option>
                   <option>Oldest</option>
+                  <option>Hardest</option>
+                  <option>Easiest</option>
                </select>
             </div>
             {this.state.cardsRendered.map((memoryCard) => {
