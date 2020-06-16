@@ -2,12 +2,15 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { withRouter } from "react-router-dom";
+import { EMAIL_REGEX } from "../../utils/helpers";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
    constructor() {
       super();
       this.state = {
-         EmailFieldIsBlank: "",
+         emailErrorMessage: "",
+         emailIsntValid: "",
          PasswordFieldIsBlank: false,
       };
    }
@@ -18,9 +21,19 @@ export default class Login extends React.Component {
       const inputedPassword = document.getElementById("Email_password_bottom")
          .value;
       if (inputedEmail === "") {
-         this.setState({ EmailFieldIsBlank: true });
+         this.setState({
+            emailIsntValid: true,
+            emailErrorMessage: "Please enter your email",
+         });
+      } else if (
+         EMAIL_REGEX.test(String(inputedEmail).toLowerCase()) === false
+      ) {
+         this.setState({
+            emailIsntValid: true,
+            emailErrorMessage: "Please enter a valid email",
+         });
       } else {
-         this.setState({ EmailFieldIsBlank: false });
+         this.setState({ emailIsntValid: false, emailErrorMessage: "" });
       }
       if (inputedPassword === "") {
          this.setState({ PasswordFieldIsBlank: true });
@@ -35,7 +48,7 @@ export default class Login extends React.Component {
       const inputedPassword = document.getElementById("Email_password_bottom")
          .value;
       if (
-         this.state.EmailFieldIsBlank === false &&
+         this.state.emailIsntValid === false &&
          this.state.PasswordFieldIsBlank === false
       ) {
          const user = {
@@ -45,6 +58,7 @@ export default class Login extends React.Component {
             createdAt: Date.now(),
          };
          console.log(user);
+         this.props.history.push("/create-answer");
       }
    }
 
@@ -66,7 +80,7 @@ export default class Login extends React.Component {
                            id="Email_textbox_bottom"
                            className={classnames({
                               "form-control": true,
-                              "is-invalid": this.state.EmailFieldIsBlank,
+                              "is-invalid": this.state.emailIsntValid,
                            })}
                            type="email"
                            name="login_info"
@@ -74,13 +88,13 @@ export default class Login extends React.Component {
                               this.checkIfCredentialsEntered();
                            }}
                         ></input>
-                        {this.state.EmailFieldIsBlank && (
+                        {this.state.emailIsntValid && (
                            <div
                               htmlFor="Email_textbox_bottom"
                               id="you-need-to-enter-email"
                               className="text-danger"
                            >
-                              Please enter your email address.
+                              {this.state.emailErrorMessage}
                            </div>
                         )}
                      </div>
@@ -125,3 +139,5 @@ export default class Login extends React.Component {
       );
    }
 }
+
+export default withRouter(Login);
