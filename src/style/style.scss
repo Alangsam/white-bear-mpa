@@ -69,3 +69,8 @@ textarea {
 .tab-active {
    background-color: $gray-700;
 }
+
+.disabled {
+   pointer-events: fill;
+   cursor: not-allowed;
+}
