@@ -9,7 +9,7 @@ export const memoryCards = [
       createdAt: 1591918723774,
       nextAttemptAt: 1591919726774,
       lastAttemptAt: 1591918723774,
-      totalSuccessfulAttempts: 3,
+      totalSuccessfulAttempts: 0,
       level: 1,
    },
    {
@@ -21,7 +21,7 @@ export const memoryCards = [
       createdAt: 1591918726774,
       nextAttemptAt: 1591919726774,
       lastAttemptAt: 1591918726774,
-      totalSuccessfulAttempts: 1,
+      totalSuccessfulAttempts: 0,
       level: 1,
    },
    {
@@ -33,7 +33,7 @@ export const memoryCards = [
       createdAt: 1591918728774,
       nextAttemptAt: 1591919726774,
       lastAttemptAt: 1591918728774,
-      totalSuccessfulAttempts: 3,
+      totalSuccessfulAttempts: 5,
       level: 1,
    },
    {
@@ -45,7 +45,7 @@ export const memoryCards = [
       createdAt: 1591918722774,
       nextAttemptAt: 1591919726774,
       lastAttemptAt: 1591918722774,
-      totalSuccessfulAttempts: 0,
+      totalSuccessfulAttempts: 4,
       level: 1,
    },
 ];

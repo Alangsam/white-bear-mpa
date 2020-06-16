@@ -15,16 +15,14 @@ export default class AllCards extends React.Component {
 
    filterCardsbySearch() {
       const arrOfMatches = memoryCards.filter((card) => {
-         if (
+         return (
             card.answer
                .toLowerCase()
                .indexOf(this.state.whatSearched.toLowerCase()) > -1 ||
             card.imagery
                .toLowerCase()
                .indexOf(this.state.whatSearched.toLowerCase()) > -1
-         ) {
-            return card;
-         }
+         );
       });
       this.setState({
          cardsRendered: orderBy([...arrOfMatches], "lastAttemptAt", "desc"),
