@@ -8,12 +8,14 @@ export default class AllCards extends React.Component {
    constructor() {
       super();
       this.state = {
+         whatsfilteredBySearch: memoryCards,
          whatSearched: "",
+         whatOrderRendered: ["lastAttemptAt", "desc"],
          cardsRendered: orderBy([...memoryCards], "lastAttemptAt", "desc"),
       };
    }
 
-   filterCardsbySearch() {
+   async filterCardsbySearch() {
       const arrOfMatches = memoryCards.filter((card) => {
          return (
             card.answer
@@ -24,34 +26,39 @@ export default class AllCards extends React.Component {
                .indexOf(this.state.whatSearched.toLowerCase()) > -1
          );
       });
-      this.setState({
-         cardsRendered: orderBy([...arrOfMatches], "lastAttemptAt", "desc"),
-      });
+      this.setState({ whatsfilteredBySearch: arrOfMatches });
    }
 
-   filterCardsBySelect(e) {
-      const arrOfSelected = [...this.state.cardsRendered];
-      const orderedByRecent = orderBy(arrOfSelected, "lastAttemptAt", "desc");
-      const orderedByOldest = orderBy(arrOfSelected, "lastAttemptAt", "asc");
-      const orderedByHardest = orderBy(
-         arrOfSelected,
-         ["totalSuccessfulAttempts", "createdAt"],
-         ["asc", "asc"]
-      );
-      const orderedByEasiest = orderBy(
-         arrOfSelected,
-         ["totalSuccessfulAttempts", "createdAt"],
-         ["desc", "desc"]
-      );
+   async filterCardsBySelect(e) {
+      //const arrOfSelected = [...this.state.cardsRendered];
       if (e.target.value === "Most recent") {
-         this.setState({ cardsRendered: orderedByRecent });
+         this.setState({ whatOrderRendered: ["lastAttemptAt", "desc"] });
       } else if (e.target.value === "Oldest") {
-         this.setState({ cardsRendered: orderedByOldest });
+         this.setState({ whatOrderRendered: ["lastAttemptAt", "asc"] });
       } else if (e.target.value === "Hardest") {
-         this.setState({ cardsRendered: orderedByHardest });
+         this.setState({
+            whatOrderRendered: [
+               ["totalSuccessfulAttempts", "createdAt"],
+               ["asc", "asc"],
+            ],
+         });
       } else if (e.target.value === "Easiest") {
-         this.setState({ cardsRendered: orderedByEasiest });
+         this.setState({
+            whatOrderRendered: [
+               ["totalSuccessfulAttempts", "createdAt"],
+               ["desc", "desc"],
+            ],
+         });
       }
+   }
+
+   async updateFilterState() {
+      this.setState({
+         cardsRendered: orderBy(
+            [...this.state.whatsfilteredBySearch],
+            ...this.state.whatOrderRendered
+         ),
+      });
    }
 
    render() {
@@ -75,8 +82,9 @@ export default class AllCards extends React.Component {
                   <button
                      id="use-this-btn-to-search"
                      className="btn btn-sm btn-primary text-white btn-block"
-                     onClick={() => {
-                        this.filterCardsbySearch();
+                     onClick={async () => {
+                        await this.filterCardsbySearch();
+                        this.updateFilterState();
                      }}
                   >
                      Search
@@ -88,9 +96,9 @@ export default class AllCards extends React.Component {
                <select
                   id="sort"
                   className="form-control border-primary col-8 float-right w-50 pt-0 "
-                  onChange={(e) => {
-                     this.filterCardsBySelect(e);
-                     console.log(e.target.value);
+                  onChange={async (e) => {
+                     await this.filterCardsBySelect(e);
+                     this.updateFilterState();
                   }}
                >
                   <option className="" defaultValue>
