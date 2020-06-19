@@ -26,7 +26,7 @@ class ReviewImagery extends React.Component {
    }
 
    render() {
-      const memoryCard = this.props.queuedCards[this.props.indexOfCurrentCard];
+      const memoryCard = this.props.queue.cards[this.props.queue.index];
       return (
          <AppTemplate>
             <div className=" mx-auto pt-4">
@@ -59,8 +59,7 @@ class ReviewImagery extends React.Component {
 
 function mapStateToProps(state) {
    return {
-      queuedCards: state.queuedCards,
-      indexOfCurrentCard: state.indexOfCurrentCard,
+      queue: state.queue,
    };
 }
 

@@ -2,7 +2,6 @@ import React from "react";
 import thumbsUpIcon from "../../icons/thumbs-up.svg";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
 
@@ -15,8 +14,8 @@ class ReviewAnswer extends React.Component {
    }
 
    render() {
-      const memoryCard = this.props.queuedCards[this.props.indexOfCurrentCard];
-
+      const memoryCard = this.props.queue.cards[this.props.queue.index];
+      console.log({ memoryCard });
       return (
          <AppTemplate>
             <div className="py-4">
@@ -67,8 +66,7 @@ class ReviewAnswer extends React.Component {
 
 function mapStateToProps(state) {
    return {
-      queuedCards: state.queuedCards,
-      indexOfCurrentCard: state.indexOfCurrentCard,
+      queue: state.queue,
    };
 }
 
