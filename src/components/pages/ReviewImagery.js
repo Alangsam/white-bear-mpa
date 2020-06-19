@@ -1,19 +1,23 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
-import { memoryCards } from "../../mock-data/memory-cards.js";
+
 import axios from "axios";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
 
-const memoryCard = memoryCards[1];
-
-export default class ReviewImagery extends React.Component {
+class ReviewImagery extends React.Component {
    constructor(props) {
       super(props);
       axios
          .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
-         .then(function (response) {
+         .then(function (res) {
             // handle success
-            console.log(response);
+            console.log(res);
+            props.dispatch({
+               type: actions.STORE_QUEUED_CARDS,
+               payload: res.data,
+            });
          })
          .catch(function (error) {
             // handle error
@@ -22,12 +26,13 @@ export default class ReviewImagery extends React.Component {
    }
 
    render() {
+      const memoryCard = this.props.queuedCards[this.props.indexOfCurrentCard];
       return (
          <AppTemplate>
             <div className=" mx-auto pt-4">
                <div id="the-bottom-card" className="card bg-primary text-light">
                   <div className="card-body">
-                     <div>{memoryCard.imagery}</div>
+                     <div>{memoryCard && memoryCard.imagery}</div>
                   </div>
                </div>
             </div>
@@ -51,3 +56,12 @@ export default class ReviewImagery extends React.Component {
       );
    }
 }
+
+function mapStateToProps(state) {
+   return {
+      queuedCards: state.queuedCards,
+      indexOfCurrentCard: state.indexOfCurrentCard,
+   };
+}
+
+export default connect(mapStateToProps)(ReviewImagery);
