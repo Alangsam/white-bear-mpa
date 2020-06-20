@@ -9,20 +9,29 @@ import actions from "../../store/actions";
 class ReviewImagery extends React.Component {
    constructor(props) {
       super(props);
-      axios
-         .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
-         .then(function (res) {
-            // handle success
-            console.log(res);
-            props.dispatch({
-               type: actions.STORE_QUEUED_CARDS,
-               payload: res.data,
+      if (props.queue.cards.length === 0) {
+         axios
+            .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
+            .then(function (res) {
+               // handle success
+               console.log(res);
+               props.dispatch({
+                  type: actions.STORE_QUEUED_CARDS,
+                  payload: res.data,
+               });
+            })
+            .catch(function (error) {
+               // handle error
+               console.log(error);
             });
-         })
-         .catch(function (error) {
-            // handle error
-            console.log(error);
-         });
+      }
+   }
+
+   goToPreviousCard() {
+      if (this.props.queue.index > 0) {
+         this.props.dispatch({ type: actions.DECREMENT_QUEUE_INDEX });
+         this.props.history.push("/review-answer");
+      }
    }
 
    render() {
@@ -38,9 +47,16 @@ class ReviewImagery extends React.Component {
             </div>
             <div className="pt-6">
                <div className="col-6 d-inline pt-4 pl-0">
-                  <Link to="/review-answer" className="btn btn-link">
-                     previous card
-                  </Link>
+                  {this.props.queue.index > 0 && (
+                     <button
+                        className="btn btn-link"
+                        onClick={() => {
+                           this.goToPreviousCard();
+                        }}
+                     >
+                        previous card
+                     </button>
+                  )}
                </div>
                <div className="col-6 d-inline pt-4">
                   <Link
