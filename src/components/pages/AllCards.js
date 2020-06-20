@@ -1,22 +1,45 @@
 import React from "react";
 import AppTemplate from "../ui/AppTemplate";
-import { memoryCards } from "../../mock-data/memory-cards";
 import MemoryCard from "../ui/MemoryCard";
 import { orderBy } from "lodash";
+import axios from "axios";
+import { connect } from "react-redux";
 
-export default class AllCards extends React.Component {
+class AllCards extends React.Component {
    constructor() {
       super();
+
       this.state = {
-         whatsfilteredBySearch: memoryCards,
+         allCards: [],
+         whatsfilteredBySearch: [],
          whatSearched: "",
-         whatOrderRendered: ["lastAttemptAt", "desc"],
-         cardsRendered: orderBy([...memoryCards], "lastAttemptAt", "desc"),
+         whatOrderRendered: [],
+         cardsRendered: [],
       };
    }
 
+   componentDidMount() {
+      axios
+         .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
+         .then((res) => {
+            // handle success
+            console.log(res);
+            const memoryCards = res.data;
+            this.setState({
+               allCards: memoryCards,
+               whatsfilteredBySearch: memoryCards,
+               whatOrderRendered: ["createdAt", "desc"],
+               cardsRendered: orderBy([...memoryCards], "createdAt", "desc"),
+            });
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
+   }
+
    async filterCardsbySearch() {
-      const arrOfMatches = memoryCards.filter((card) => {
+      const arrOfMatches = this.state.allCards.filter((card) => {
          return (
             card.answer
                .toLowerCase()
@@ -32,9 +55,9 @@ export default class AllCards extends React.Component {
    async filterCardsBySelect(e) {
       //const arrOfSelected = [...this.state.cardsRendered];
       if (e.target.value === "Most recent") {
-         this.setState({ whatOrderRendered: ["lastAttemptAt", "desc"] });
+         this.setState({ whatOrderRendered: ["createdAt", "desc"] });
       } else if (e.target.value === "Oldest") {
-         this.setState({ whatOrderRendered: ["lastAttemptAt", "asc"] });
+         this.setState({ whatOrderRendered: ["createdAt", "asc"] });
       } else if (e.target.value === "Hardest") {
          this.setState({
             whatOrderRendered: [
@@ -122,3 +145,9 @@ export default class AllCards extends React.Component {
       );
    }
 }
+
+function mapStateToProps(state) {
+   return {};
+}
+
+export default connect(mapStateToProps)(AllCards);
