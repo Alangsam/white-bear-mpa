@@ -17,6 +17,14 @@ class ReviewAnswer extends React.Component {
       }
    }
 
+   storeEditableCard() {
+      const memoryCard = this.props.queue.cards[this.props.queue.index];
+      this.props.dispatch({
+         type: actions.STORE_EDITABLE_CARD,
+         payload: { card: memoryCard, previousRoute: "/review-answer" },
+      });
+   }
+
    render() {
       const memoryCard = this.props.queue.cards[this.props.queue.index];
       console.log({ memoryCard });
@@ -35,7 +43,13 @@ class ReviewAnswer extends React.Component {
                </div>
             </div>
             <div className=" mx-auto ">
-               <Link to="/edit" className="btn btn-link">
+               <Link
+                  to="/edit"
+                  className="btn btn-link"
+                  onClick={() => {
+                     this.storeEditableCard();
+                  }}
+               >
                   Edit card
                </Link>
                <div className="float-right">
