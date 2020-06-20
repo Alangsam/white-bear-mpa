@@ -23,9 +23,11 @@ class ReviewEmpty extends React.Component {
             </div>
             <div className="">
                <div className="col-6 d-inline pt-3 pl-0">
-                  <Link to="/review-answer" className="btn btn-link">
-                     previous card
-                  </Link>
+                  {this.props.queue.cards.length !== 0 && (
+                     <Link to="/review-answer" className="btn btn-link">
+                        previous card
+                     </Link>
+                  )}
                </div>
                <div className="col-6 d-inline pt-4 ">
                   <button

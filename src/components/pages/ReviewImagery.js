@@ -25,12 +25,17 @@ class ReviewImagery extends React.Component {
                console.log(error);
             });
       }
+
+      if (props.queue.index > props.queue.cards.length) {
+         this.props.dispatch({ type: actions.DECREMENT_QUEUE_INDEX });
+         this.props.history.push("/review-empty");
+      }
    }
 
    goToPreviousCard() {
       if (this.props.queue.index > 0) {
          this.props.dispatch({ type: actions.DECREMENT_QUEUE_INDEX });
-         this.props.history.push("/review-answer");
+         this.props.history.push("/review-empty");
       }
    }
 
