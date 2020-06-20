@@ -4,6 +4,7 @@ import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
 import { withRouter } from "react-router-dom";
 import { EMAIL_REGEX } from "../../utils/helpers";
+import axios from "axios";
 
 class Login extends React.Component {
    constructor() {
@@ -13,6 +14,20 @@ class Login extends React.Component {
          emailIsntValid: "",
          PasswordFieldIsBlank: false,
       };
+   }
+
+   componentDidMount() {
+      axios
+         .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
+         .then((res) => {
+            // handle success
+            console.log(res);
+            const currentUser = res.data;
+         })
+         .catch((error) => {
+            // handle error
+            console.log(error);
+         });
    }
 
    checkIfCredentialsEntered() {
