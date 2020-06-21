@@ -2,9 +2,11 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
-import { withRouter } from "react-router-dom";
 import { EMAIL_REGEX } from "../../utils/helpers";
 import axios from "axios";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
+import { withRouter } from "react-router-dom";
 
 class Login extends React.Component {
    constructor() {
@@ -16,13 +18,19 @@ class Login extends React.Component {
       };
    }
 
-   componentDidMount() {
+   logInCurrentUser() {
       axios
-         .get("http://run.mocky.io/v3/f9dd6eab-752c-4e74-8662-121b9300af15")
+         .get(
+            "https://raw.githubusercontent.com/Alangsam/white-bear-mpa/master/src/mock-data/user.json"
+         )
          .then((res) => {
             // handle success
-            console.log(res);
+            console.log(res.data);
             const currentUser = res.data;
+            this.props.dispatch({
+               type: actions.UPDATE_CURRENT_USER,
+               payload: currentUser,
+            });
          })
          .catch((error) => {
             // handle error
@@ -73,6 +81,7 @@ class Login extends React.Component {
             createdAt: Date.now(),
          };
          console.log(user);
+         this.logInCurrentUser();
          this.props.history.push("/create-answer");
       }
    }
@@ -155,4 +164,12 @@ class Login extends React.Component {
    }
 }
 
-export default withRouter(Login);
+function mapStateToProps(state) {
+   return {
+      editableCard: state.editableCard,
+      queue: state.queue,
+      currentUser: state.currentUser,
+   };
+}
+
+export default withRouter(connect(mapStateToProps)(Login));
